@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "e5eaa4af-db0a-40ba-b9ef-db7942f4e9e3",
+		"name": "Transferencias",
+		"description": "A API transferências é responsável por realizar as transferências bancárias dos clientes, garantindo sua segurança e integridade. Ela realiza uma série de validações cruciais, incluindo:\n\n- Verificação do ID do cliente, que é obtido por meio da API de Cadastro.\n    \n- Confirmação do ID da conta envolvida na transação, acessado por meio da API de Contas.\n    \n- Avaliação do saldo disponível na conta, também obtido pela API de Contas.\n    \n- Verificação do limite diário autorizado para a conta em questão, acessado pela API de Contas.\n    \n\nAlém disso, a API é responsável pela atualização do saldo na rota /saldos da API de Contas. Por fim, após a conclusão da transação, a API notifica o Banco Central através da API Bacen, garantindo o registro adequado da operação.\"",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35139486"
+	},
+	"item": [
+		{
+			"name": "transferencias",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"idCliente\": \"2ceb26e9-7b5c-417e-bf75-ffaa66e3a76f\",\r\n    \"valor\": 500.00,\r\n    \"conta\": {\r\n        \"idOrigem\": \"d0d32142-74b7-4aca-9c68-838aeacef96b\",\r\n        \"idDestino\": \"41313d7b-bd75-4c75-9dea-1f4be434007f\"\r\n    }\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/transferencias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transferencias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contas/atualizaSaldo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"valor\": 1000.00,\r\n    \"conta\": {\r\n        \"idOrigem\": \"d0d32142-74b7-4aca-9c68-838aeacef96b\",\r\n        \"idDestino\": \"41313d7b-bd75-4c75-9dea-1f4be434007f\"\r\n    }\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/contas/saldos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"contas",
+						"saldos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "contas/{idConta}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/contas/d0d32142-74b7-4aca-9c68-838aeacef96b",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"contas",
+						"d0d32142-74b7-4aca-9c68-838aeacef96b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "clientes{idCliente}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/clientes/2ceb26e9-7b5c-417e-bf75-ffaa66e3a76f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"clientes",
+						"2ceb26e9-7b5c-417e-bf75-ffaa66e3a76f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "notificacoes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/notificacoes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"notificacoes"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
