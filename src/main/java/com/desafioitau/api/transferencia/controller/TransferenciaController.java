@@ -3,7 +3,6 @@ package com.desafioitau.api.transferencia.controller;
 import com.desafioitau.api.transferencia.dto.TransferenciaRequestDTO;
 import com.desafioitau.api.transferencia.dto.TransferenciaResponseDTO;
 import com.desafioitau.api.transferencia.service.TransferenciaService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

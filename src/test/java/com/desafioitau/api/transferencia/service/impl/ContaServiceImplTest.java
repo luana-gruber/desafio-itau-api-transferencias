@@ -8,7 +8,6 @@ import com.desafioitau.api.transferencia.constants.ApiEndpoints;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
-import static org.mockito.ArgumentMatchers.eq;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
@@ -82,9 +80,7 @@ class ContaServiceImplTest {
                 .thenThrow(new RequestException(expectedExceptionMessage, HttpStatus.BAD_GATEWAY));
 
         // Act & Assert
-        ContaNaoEncontradaException contaNaoEncontradaException = assertThrows(ContaNaoEncontradaException.class, () -> {
-            contaService.validarContaElegivelTransferencia(transferenciaRequestDTO);
-        });
+        ContaNaoEncontradaException contaNaoEncontradaException = assertThrows(ContaNaoEncontradaException.class, () -> contaService.validarContaElegivelTransferencia(transferenciaRequestDTO));
 
         // Assert
         assertEquals(expectedExceptionMessage, contaNaoEncontradaException .getMessage());
@@ -111,9 +107,7 @@ class ContaServiceImplTest {
 
         // Act & Assert
         when(objectMapper.readValue(invalidJson, ContaResponseDTO.class)).thenThrow(JsonProcessingException.class);
-        RequestException requestException = assertThrows(RequestException.class, () -> {
-            contaService.validarContaElegivelTransferencia(transferenciaRequestDTO);
-        });
+        RequestException requestException = assertThrows(RequestException.class, () -> contaService.validarContaElegivelTransferencia(transferenciaRequestDTO));
 
         // Assert
         assertEquals(expectedExceptionMessage, requestException.getMessage());
@@ -140,9 +134,7 @@ class ContaServiceImplTest {
         when(objectMapper.readValue(anyString(), eq(ContaResponseDTO.class))).thenReturn(contaResponseDTO);
 
         // Act & Assert
-        ContaDesativadaException contaDesativadaException = assertThrows(ContaDesativadaException.class, () -> {
-            contaService.validarContaElegivelTransferencia(transferenciaRequestDTO);
-        });
+        ContaDesativadaException contaDesativadaException = assertThrows(ContaDesativadaException.class, () -> contaService.validarContaElegivelTransferencia(transferenciaRequestDTO));
 
         // Assert
         assertEquals(expectedExceptionMessage, contaDesativadaException.getMessage());
@@ -170,9 +162,7 @@ class ContaServiceImplTest {
         when(objectMapper.readValue(anyString(), eq(ContaResponseDTO.class))).thenReturn(contaResponseDTO);
 
         // Act & Assert
-        SaldoInsuficienteException saldoInsuficienteException = assertThrows(SaldoInsuficienteException.class, () -> {
-            contaService.validarContaElegivelTransferencia(transferenciaRequestDTO);
-        });
+        SaldoInsuficienteException saldoInsuficienteException = assertThrows(SaldoInsuficienteException.class, () -> contaService.validarContaElegivelTransferencia(transferenciaRequestDTO));
 
         // Assert
         assertEquals(expectedExceptionMessage, saldoInsuficienteException.getMessage());
@@ -200,9 +190,7 @@ class ContaServiceImplTest {
         when(objectMapper.readValue(anyString(), eq(ContaResponseDTO.class))).thenReturn(contaResponseDTO);
 
         // Act & Assert
-        LimiteDiarioInsuficienteException saldoInsuficienteException = assertThrows(LimiteDiarioInsuficienteException.class, () -> {
-            contaService.validarContaElegivelTransferencia(transferenciaRequestDTO);
-        });
+        LimiteDiarioInsuficienteException saldoInsuficienteException = assertThrows(LimiteDiarioInsuficienteException.class, () -> contaService.validarContaElegivelTransferencia(transferenciaRequestDTO));
 
         // Assert
         assertEquals(expectedExceptionMessage, saldoInsuficienteException.getMessage());
@@ -230,9 +218,7 @@ class ContaServiceImplTest {
         when(objectMapper.readValue(anyString(), eq(ContaResponseDTO.class))).thenReturn(contaResponseDTO);
 
         // Act & Assert
-        LimiteDiarioInsuficienteException saldoInsuficienteException = assertThrows(LimiteDiarioInsuficienteException.class, () -> {
-            contaService.validarContaElegivelTransferencia(transferenciaRequestDTO);
-        });
+        LimiteDiarioInsuficienteException saldoInsuficienteException = assertThrows(LimiteDiarioInsuficienteException.class, () -> contaService.validarContaElegivelTransferencia(transferenciaRequestDTO));
 
         // Assert
         assertEquals(expectedExceptionMessage, saldoInsuficienteException.getMessage());
