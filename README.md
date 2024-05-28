@@ -48,8 +48,8 @@ A aplicação foi desenvolvida com as principais tecnologias:
 # Diagramas
 1. Diagrama de classe da aplicação:
    ![Diagrama de classes](./docs/images/diagramas-de-classe.png)
-2. Diagrama de sequência macro:
-![Diagrama de classes](./docs/images/diagrama-sequencia-macro.png)
+2. Diagrama de sequência macro: <br></br>
+   ![Diagrama de classes](./docs/images/diagrama-sequencia-macro.png)
 
 # Arquitetura AWS
 Como parte do desafio foi solicitado o desenho da solução na arquitetura AWS, também disponibilizei os arquivos terraform que seriam necessários para implementação na AWS. Estão disponibilizados na pasta terraform do projeto.
